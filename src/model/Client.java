@@ -6,14 +6,40 @@ import java.util.List;
 public class Client {
     private String firstName;
     private String lastName;
-    private SizeCondom sizePenis;
+    private CondomSize penisSize;
     private List<Product> productList;
 
-    public Client(String firstName, String lastName, SizeCondom sizeCondom) {
+    public Client(String firstName, String lastName, CondomSize penisSize) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.sizePenis = sizeCondom;
+        this.penisSize = penisSize;
         productList = new ArrayList<>();
+    }
+
+    public void buyProduct(Product product) {
+        if (product.getClient() != null) {
+            throw new IllegalStateException();
+        }
+        productList.add(product);
+        product.setClient(this);
+    }
+
+    public double getExpenses() {
+        double sum = 0.0;
+        for (Product product : productList) {
+            sum += product.getCost();
+        }
+        return sum;
+    }
+
+    public boolean boughtCondom() {
+        return productList.stream()
+                .anyMatch(product -> product instanceof Condom && product.getName().equalsIgnoreCase("Durex"));
+    }
+
+    public boolean boughtWrongSizeCondom() {
+        return productList.stream()
+                .anyMatch(product -> product instanceof Condom && ((Condom) product).getSize() != penisSize);
     }
 
     public void addProduct(Product product) {
@@ -24,8 +50,8 @@ public class Client {
         return productList;
     }
 
-    public SizeCondom getSizePenis() {
-        return sizePenis;
+    public CondomSize getPenisSize() {
+        return penisSize;
     }
 
     @Override

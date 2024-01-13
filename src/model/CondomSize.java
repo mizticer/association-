@@ -1,6 +1,6 @@
 package model;
 
-public enum SizeCondom {
+public enum CondomSize {
     S,
     M,
     L,

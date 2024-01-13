@@ -1,14 +1,14 @@
 package model;
 
 public class Condom extends Product {
-    private SizeCondom sizeCondom;
+    private CondomSize size;
 
-    public Condom(String name, double cost, SizeCondom sizeCondom) {
+    public Condom(String name, double cost, CondomSize size) {
         super(name, cost);
-        this.sizeCondom = sizeCondom;
+        this.size = size;
     }
 
-    public SizeCondom getSizeCondom() {
-        return sizeCondom;
+    public CondomSize getSize() {
+        return size;
     }
 }

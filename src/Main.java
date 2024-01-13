@@ -19,17 +19,17 @@ public class Main {
         Shop shop = new Shop();
         List<Client> cLientList = new ArrayList<>();
 
-        Client clientOne = new Client("Michal", "Kowalski", SizeCondom.XL);
-        Client clientTwo = new Client("Marcel", "Lewczuk", SizeCondom.S);
-        Client clientThree = new Client("Marian", "Dzieciol", SizeCondom.M);
-        Client clientFour = new Client("Wojciech", "Suchodolski", SizeCondom.L);
-        Client clientFive = new Client("Kacper", "Lebioda", SizeCondom.L);
+        Client clientOne = new Client("Michal", "Kowalski", CondomSize.XL);
+        Client clientTwo = new Client("Marcel", "Lewczuk", CondomSize.S);
+        Client clientThree = new Client("Marian", "Dzieciol", CondomSize.M);
+        Client clientFour = new Client("Wojciech", "Suchodolski", CondomSize.L);
+        Client clientFive = new Client("Kacper", "Lebioda", CondomSize.L);
 
-        Product productDurexS = new Condom("Durex", 10.0, SizeCondom.S);
-        Product productDurexM = new Condom("Durex", 12.0, SizeCondom.M);
-        Product productDurexL = new Condom("Durex", 15.0, SizeCondom.L);
-        Product productDurexXL = new Condom("Durex", 20.0, SizeCondom.XL);
-        Product productCondomXL = new Condom("Condom", 8.0, SizeCondom.L);
+        Product productDurexS = new Condom("Durex", 10.0, CondomSize.S);
+        Product productDurexM = new Condom("Durex", 12.0, CondomSize.M);
+        Product productDurexL = new Condom("Durex", 15.0, CondomSize.L);
+        Product productDurexXL = new Condom("Durex", 20.0, CondomSize.XL);
+        Product productCondomXL = new Condom("Condom", 8.0, CondomSize.L);
         Product productBread = new Product("Bread", 20.0);
         Product productButter = new Product("Butter", 30.0);
         Product productCornflakes = new Product("Cornflakes", 40.0);
