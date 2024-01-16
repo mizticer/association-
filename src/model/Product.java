@@ -5,10 +5,19 @@ import java.util.Objects;
 public class Product {
     private String name;
     private double price;
+    private Client client;
 
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public String getName() {

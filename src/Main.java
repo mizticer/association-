@@ -27,10 +27,15 @@ public class Main {
         Client clientTwo = new Client("Jan", "Smith");
         Client clientThree = new Client("Helena", "Doe");
 
-        Product chocolate = new Product("Chocolate", 7.0);
-        Product bread = new Product("Bread", 3.0);
-        Product iceCream = new Product("Ice cream", 2.0);
-        Product banana = new Product("Banana", 1.0);
+
+        clientOne.buyProduct(new Product("Chocolate", 7.0));
+        clientOne.buyProduct(new Product("Chocolate", 7.0));
+        clientOne.buyProduct(new Product("Chocolate", 7.0));
+
+        clientTwo.buyProduct(new Product("Ice cream", 2.0));
+        clientTwo.buyProduct(new Product("Ice cream", 2.0));
+
+        clientThree.buyProduct(new Product("Banana", 1.0));
 
         Car car1 = new Car("Toyota", "Camry");
         Car car2 = new Car("Ford", "Mustang");
@@ -57,11 +62,7 @@ public class Main {
         employees.get(2).rentCar(car2);
         employees.get(2).rentCar(car2);
 
-        clientOne.buyProducts(Arrays.asList(chocolate, bread, banana, chocolate, chocolate));
-        clientTwo.buyProducts(Arrays.asList(banana, banana, banana, iceCream));
-        clientThree.buyProducts(Arrays.asList(banana, bread, bread));
-
-        Client searchedCLient = findClientWithMostExpensiveListProduct(clientOne, clientTwo, clientThree);
+        Client searchedCLient = findClientWithMostExpensiveListProduct(Arrays.asList(clientOne, clientTwo, clientThree));
         System.out.println("Client who spent the most money: " + searchedCLient.getFirstName() + " " + searchedCLient.getLastName());
         System.out.println("Favourite products client");
         printFavourtieProductOfClient(clientOne, clientTwo, clientThree);
@@ -74,24 +75,21 @@ public class Main {
 
     private static void printFavourtieProductOfClient(Client... clients) {
         for (Client client : clients) {
-            System.out.println(client.getFirstName() + " " + client.getLastName() + " have favourite product - " + client.getFavouriteProduct().getName());
+            System.out.println(client.getFirstName() + " " + client.getLastName() + " have favourite product - " + client.findFavouriteProduct());
         }
     }
 
-    private static Client findClientWithMostExpensiveListProduct(Client... clients) {
-        Client returnClient = null;
-        double maxExpenses = 0.0;
-
-        for (Client client : clients) {
-            double expensesClient = client.getProductList().stream()
-                    .mapToDouble(Product::getPrice)
-                    .sum();
-            if (expensesClient > maxExpenses) {
-                maxExpenses = expensesClient;
-                returnClient = client;
+    private static Client findClientWithMostExpensiveListProduct(List<Client> clientList) {
+        if (clientList.isEmpty()) {
+            throw new IllegalStateException();
+        }
+        Client clientWithMaxExpenses = clientList.get(0);
+        for (Client client : clientList) {
+            if (client.getExpenses() > clientWithMaxExpenses.getExpenses()) {
+                clientWithMaxExpenses = client;
             }
         }
-        return returnClient;
+        return clientWithMaxExpenses;
     }
 
     private static void findTopEmployee(List<Employee> employeeList) {
