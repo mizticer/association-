@@ -1,20 +1,37 @@
 package model;
 
-import lombok.Getter;
-import lombok.experimental.SuperBuilder;
-
 import java.util.Date;
 
-@SuperBuilder
-@Getter
 public class Child extends Person {
     private int offences;
     private TypeKid typeKid;
+    private Group group;
 
     public Child(String firstName, String lastName, Date dateOfBirth, int offences) {
         super(firstName, lastName, dateOfBirth);
         this.offences = offences;
         checkBehaviour();
+    }
+
+    public int getOffences() {
+        return offences;
+    }
+
+    public void setOffences(int offences) {
+        this.offences = offences;
+        checkBehaviour();
+    }
+
+    public TypeKid getTypeKid() {
+        return typeKid;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     private void checkBehaviour() {

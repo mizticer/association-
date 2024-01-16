@@ -1,3 +1,11 @@
+import model.Caretaker;
+import model.Child;
+import model.Group;
+import model.TypeCaretaker;
+
+import javax.swing.*;
+import java.util.Date;
+
 public class Main {
     /*
      * Stwórz system do zarządzania przedszkolem. W przedszkolu mamy dzieci oraz
@@ -19,6 +27,22 @@ public class Main {
      * -i wyswietl wszystkie te dzieci wczytane z pliku na JLiscie
      */
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Caretaker caretaker=new Caretaker("Agnieszka","Wójcik",new Date(1999,2,24), TypeCaretaker.QUALIFIED);
+
+        Child childOne = new Child("TestoweDziecko1","Nazwisko1",new Date(1999,2,24),2);
+        Child childTwo = new Child("TestoweDziecko2","Nazwisko2",new Date(1999,2,24),5);
+        Child childThree = new Child("TestoweDziecko3","Nazwisko3",new Date(1999,2,24),0);
+
+        Group group=new Group("AA");
+        group.setCaretaker(caretaker);
+        group.addChild(childOne);
+        group.addChild(childTwo);
+        group.addChild(childThree);
+        group.saveChildrenToFile(caretaker);
+
+        SwingUtilities.invokeLater(() -> {
+            ChildListGUI gui = new ChildListGUI();
+            gui.setVisible(true);
+        });
     }
 }
