@@ -5,6 +5,9 @@ public class Result {
     private int points;
 
     public Result(int position) {
+        if (position < 1) {
+            throw new IllegalArgumentException("Position must be a positive integer");
+        }
         this.position = position;
         calculatePoints();
     }

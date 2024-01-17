@@ -36,6 +36,7 @@ public class Main {
         player2.addResult(tournament1, 2);
         player2.addResult(tournament2, 1);
 
+
         Player player3 = new Player("Bob", "Johnson");
         player3.addResult(tournament1, 3);
         player3.addResult(tournament2, 2);

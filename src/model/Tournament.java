@@ -15,6 +15,9 @@ public class Tournament {
     }
 
     public void addPlayer(Player player) {
+        if(players.contains(player)){
+            throw new IllegalArgumentException("Player is already in the tournament");
+        }
         players.add(player);
     }
 

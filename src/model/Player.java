@@ -19,6 +19,9 @@ public class Player {
     }
 
     public void addResult(Tournament tournament, int position) {
+        if (position < 1) {
+            throw new IllegalArgumentException("Position must be a positive integer");
+        }
         if (results.values().stream().anyMatch(result -> result.getPosition() == position)) {
             throw new IllegalArgumentException("Player cannot have the same position in the tournament");
         }
