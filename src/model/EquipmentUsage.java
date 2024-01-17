@@ -5,12 +5,12 @@ import java.util.Date;
 public class EquipmentUsage {
     private Trainer trainer;
     private Equipment equipment;
-    private Date startDate;
-    private Date endDate;
-    public EquipmentUsage(Trainer trainer, Equipment equipment, Date startDate) {
+    private Date rentDate;
+
+    public EquipmentUsage(Trainer trainer, Equipment equipment, Date rentDate) {
         this.trainer = trainer;
         this.equipment = equipment;
-        this.startDate = startDate;
+        this.rentDate = rentDate;
     }
 
     public Trainer getTrainer() {
@@ -19,13 +19,5 @@ public class EquipmentUsage {
 
     public Equipment getEquipment() {
         return equipment;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
     }
 }

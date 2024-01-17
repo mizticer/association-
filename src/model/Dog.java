@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class Dog extends Animal{
+public class Dog extends Animal {
     private int furLength;
     private List<String> favouriteToys;
 

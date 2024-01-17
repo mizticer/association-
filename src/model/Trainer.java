@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trainer {
-    //Trenerzy (imie, nazwisko, adres) trenuja zwierzeta. Kazdy trener trenuje wiele zwierzat, ale zwierze jest pod okiem jednego trenera.
     private String firstName;
     private String lastName;
     private String address;
@@ -16,7 +15,7 @@ public class Trainer {
         this.lastName = lastName;
         this.address = address;
         trainedAnimalList = new ArrayList<>();
-        this.equipmentUsages = new ArrayList<>();
+        equipmentUsages = new ArrayList<>();
     }
 
     public void addAnimal(Animal animal) {
@@ -28,12 +27,32 @@ public class Trainer {
         equipmentUsages.add(usage);
     }
 
+    public List<EquipmentUsage> getEquipmentUsages() {
+        return equipmentUsages;
+    }
+
     public int numberOfAnimalsTrained() {
         return trainedAnimalList.size();
     }
-    public boolean trainedSpaniel(){
+
+    public boolean trainedSpaniel() {
         return trainedAnimalList.stream()
                 .anyMatch(animal -> animal.getSpecies().equals("Spaniel"));
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

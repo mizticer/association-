@@ -21,4 +21,12 @@ public class Animal {
     public String getSpecies() {
         return species;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", species='" + species + '\'' +
+                '}';
+    }
 }

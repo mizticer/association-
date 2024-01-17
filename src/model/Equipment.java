@@ -17,4 +17,26 @@ public class Equipment {
             repairCount++;
         }
     }
+
+    public void destroy() {
+        if (condition == Condition.NEW || condition == Condition.USED) {
+            condition = Condition.TRAGIC;
+        }
+    }
+
+    public int getRepairCount() {
+        return repairCount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "name='" + name + '\'' +
+                ", condition=" + condition +
+                '}';
+    }
 }
