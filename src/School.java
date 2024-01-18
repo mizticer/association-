@@ -16,6 +16,14 @@ public class School {
         teacherList = new ArrayList<>();
     }
 
+    public void addStudent(Student student) {
+        studentList.add(student);
+    }
+
+    public void addTeacher(Teacher teacher) {
+        teacherList.add(teacher);
+    }
+
     public void addLesson(Lesson lesson, Student student) {
         if (lesson.getDate().before(new Date())) {
             throw new IllegalArgumentException("Cannot create lesson in the past.");
