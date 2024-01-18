@@ -37,6 +37,5 @@ public class Student extends Person {
 
     public void addLesson(Lesson lesson) {
         lessonList.add(lesson);
-        lesson.setStudent(this);
     }
 }

@@ -12,6 +12,7 @@ public class Lesson {
 
     public void setStudent(Student student) {
         this.student = student;
+        student.addLesson(this);
     }
 
     public Date getDate() {
