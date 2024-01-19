@@ -35,13 +35,21 @@ public class Group {
         room.setGroup(this);
     }
 
+    public List<Child> getChildren() {
+        return children;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public void setCaretaker(Caretaker caretaker) {
         this.caretaker = caretaker;
     }
 
     public Child getChildWithMostOffencesFromGroup() {
         if (children.isEmpty()) {
-            return null;
+            throw new IllegalStateException();
         }
         Child childWithMostOffences = children.get(0);
 
@@ -52,19 +60,5 @@ public class Group {
         }
         return childWithMostOffences;
     }
-    public void saveChildrenToFile(Caretaker caretaker){
-        if(!this.caretaker.equals(caretaker)){
-            System.out.println();
-            return;
-        }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("children.txt"))) {
-            for (Child child : children) {
-                writer.write(child.getFullName());
-                writer.newLine();
-            }
-            System.out.println("Dane dzieci zostały zapisane do pliku.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

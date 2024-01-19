@@ -1,5 +1,8 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,4 +51,5 @@ public class Caretaker extends Person {
     public List<Group> getGroupList() {
         return groupList;
     }
+
 }

@@ -27,18 +27,33 @@ public class Main {
      * -i wyswietl wszystkie te dzieci wczytane z pliku na JLiscie
      */
     public static void main(String[] args) {
-        Caretaker caretaker=new Caretaker("Agnieszka","Wójcik",new Date(1999,2,24), TypeCaretaker.QUALIFIED);
+        Preschool preschool = new Preschool();
 
-        Child childOne = new Child("TestoweDziecko1","Nazwisko1",new Date(1999,2,24),2);
-        Child childTwo = new Child("TestoweDziecko2","Nazwisko2",new Date(1999,2,24),5);
-        Child childThree = new Child("TestoweDziecko3","Nazwisko3",new Date(1999,2,24),0);
+        Caretaker caretaker = new Caretaker("Agnieszka", "Wójcik", new Date(1999, 2, 24), TypeCaretaker.QUALIFIED);
 
-        Group group=new Group("AA");
-        group.setCaretaker(caretaker);
+        Child childOne = new Child("TestoweDziecko1", "Nazwisko1", new Date(1999, 2, 24), 2);
+        Child childTwo = new Child("TestoweDziecko2", "Nazwisko2", new Date(1999, 2, 24), 5);
+        Child childThree = new Child("TestoweDziecko3", "Nazwisko3", new Date(1999, 2, 24), 0);
+        Child childFour = new Child("TestoweDziecko4", "Nazwisko4", new Date(1999, 2, 24), 5);
+        Child childFive = new Child("TestoweDziecko5", "Nazwisko5", new Date(1999, 2, 24), 0);
+
+        Group group = new Group("AA");
+        Group group2 = new Group("BBC");
+
         group.addChild(childOne);
         group.addChild(childTwo);
         group.addChild(childThree);
-        group.saveChildrenToFile(caretaker);
+        caretaker.addGroup(group);
+
+        group2.addChild(childFour);
+        group2.addChild(childFive);
+        caretaker.addGroup(group2);
+
+        preschool.addCaretaker(caretaker);
+        preschool.addGroup(group);
+        preschool.addGroup(group2);
+
+        preschool.saveChildrenToFile(caretaker);
 
         SwingUtilities.invokeLater(() -> {
             ChildListGUI gui = new ChildListGUI();
