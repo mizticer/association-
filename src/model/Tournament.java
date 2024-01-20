@@ -7,6 +7,7 @@ public class Tournament {
     private String name;
     private String month;
     private List<Player> players;
+    //TODO: ZBIÓR REZULTATÓW
 
     public Tournament(String name, String month) {
         this.name = name;

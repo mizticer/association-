@@ -3,6 +3,7 @@ package model;
 public class Result {
     private int position;
     private int points;
+    //TODO: POLE GRACZA I POLE TURNIEJU
 
     public Result(int position) {
         if (position < 1) {
