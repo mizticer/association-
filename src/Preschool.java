@@ -1,12 +1,11 @@
-import model.Caretaker;
-import model.Child;
-import model.Group;
+import model.*;
 import model.TypeCaretaker;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Preschool {
@@ -30,25 +29,35 @@ public class Preschool {
         List<Caretaker> qualifiedCaretakers = new ArrayList<>();
 
         for (Caretaker caretaker : caretakers) {
-            if (caretaker.getTypeCaretaker() == TypeCaretaker.QUALIFIED && caretaker.getSalary() > minSalary) {
+            if (caretaker instanceof QualifiedCaretaker && caretaker.getSalary() > minSalary) {
                 qualifiedCaretakers.add(caretaker);
             }
         }
         return qualifiedCaretakers;
     }
 
-    public Child findChildWithMostOffencesFromSchool() {
-        if (groups.isEmpty()) {
-            throw new IllegalStateException();
-        }
-        Child childWithMostOffences = groups.get(0).getChildWithMostOffencesFromGroup();
+//    public Child findChildWithMostOffencesFromSchool() {
+//        if (groups.isEmpty()) {
+//            throw new IllegalStateException();
+//        }
+//        Child childWithMostOffences = groups.get(0).getChildWithMostOffences();
+//
+//        // TODO: 20.01.2024 : dokończyć za pomocą pętli
+////        for (Group group : groups) {
+////            if (group.getChildWithMostOffences().getOffences() > childWithMostOffences.getOffences()) {
+////                childWithMostOffences = group.getChildWithMostOffences();
+////            }
+////        }
+//        return childWithMostOffences;
+//    }
 
-        for (Group group : groups) {
-            if (group.getChildWithMostOffencesFromGroup().getOffences() > childWithMostOffences.getOffences()) {
-                childWithMostOffences = group.getChildWithMostOffencesFromGroup();
-            }
-        }
-        return childWithMostOffences;
+    public RudeChild findChildWithMostOffencesFromSchool() {
+        return groups.stream()
+                .flatMap(group -> group.getChildren().stream())
+                .filter(child -> child instanceof RudeChild)
+                .map(child -> (RudeChild) child)
+                .max(Comparator.comparingInt(child -> child.getOffences().size()))
+                .orElseThrow();
     }
 
     public void saveChildrenToFile(Caretaker caretaker) {

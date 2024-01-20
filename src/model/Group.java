@@ -2,27 +2,23 @@ package model;
 
 import util.Constants;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Group {
     private List<Child> children;
     private String name;
-    private int maxChildren;
     private Caretaker caretaker;
     private Room room;
 
     public Group(String name) {
         this.name = name;
-        this.maxChildren = Constants.MAX_CHILDREN_IN_GROUP;
         this.children = new ArrayList<>();
     }
 
     public void addChild(Child child) {
-        if (children.size() < maxChildren) {
+        if (children.size() <  Constants.MAX_CHILDREN_IN_GROUP) {
             children.add(child);
             child.setGroup(this);
         } else {
@@ -47,18 +43,27 @@ public class Group {
         this.caretaker = caretaker;
     }
 
-    public Child getChildWithMostOffencesFromGroup() {
+    public Child getChildWithMostOffences() {
         if (children.isEmpty()) {
             throw new IllegalStateException();
         }
-        Child childWithMostOffences = children.get(0);
+        RudeChild childWithMostOffences = findRudeChild();
 
         for (Child child : children) {
-            if (child.getOffences() > childWithMostOffences.getOffences()) {
-                childWithMostOffences = child;
+            if (child instanceof RudeChild && ((RudeChild) child).getOffences().size() > childWithMostOffences.getOffences().size()) {
+                childWithMostOffences = (RudeChild) child;
             }
         }
         return childWithMostOffences;
+    }
+
+    private RudeChild findRudeChild() {
+        for (Child child : children) {
+            if (child instanceof RudeChild) {
+                return (RudeChild) child;
+            }
+        }
+        throw new NoSuchElementException("No RudeChild in this group");
     }
 
 }

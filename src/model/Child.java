@@ -2,28 +2,11 @@ package model;
 
 import java.util.Date;
 
-public class Child extends Person {
-    private int offences;
-    private TypeKid typeKid;
+public abstract class Child extends Person {
     private Group group;
 
-    public Child(String firstName, String lastName, Date dateOfBirth, int offences) {
+    public Child(String firstName, String lastName, Date dateOfBirth) {
         super(firstName, lastName, dateOfBirth);
-        this.offences = offences;
-        checkBehaviour();
-    }
-
-    public int getOffences() {
-        return offences;
-    }
-
-    public void setOffences(int offences) {
-        this.offences = offences;
-        checkBehaviour();
-    }
-
-    public TypeKid getTypeKid() {
-        return typeKid;
     }
 
     public Group getGroup() {
@@ -34,11 +17,5 @@ public class Child extends Person {
         this.group = group;
     }
 
-    private void checkBehaviour() {
-        if (this.offences > 3) {
-            this.typeKid = TypeKid.NO_POLITELY;
-        } else {
-            this.typeKid = TypeKid.POLITELY;
-        }
-    }
+
 }
