@@ -7,7 +7,7 @@ public class Player {
     private String firstName;
     private String lastName;
     private Map<Tournament, Result> results;
-    //TODO: DODAJ LISTE TURNIEJÓW
+    //TODO: DODAJ LISTE REZULTATÓW
 
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
