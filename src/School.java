@@ -29,7 +29,6 @@ public class School {
             throw new IllegalArgumentException("Cannot create lesson in the past.");
         }
         lesson.setStudent(student);
-        student.addLesson(lesson);
     }
 
     public Student studentWithTheMostLessons() {

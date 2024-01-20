@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends Person {
-    private Language learningLanguage;
+    private Language language;
     private Teacher teacher;
     private List<Lesson> lessonList;
 
     public Student(String firstName, String lastName, Language learningLanguage) {
         super(firstName, lastName);
-        this.learningLanguage = learningLanguage;
+        this.language = learningLanguage;
         lessonList = new ArrayList<>();
     }
 
-    public Language getLearningLanguage() {
-        return learningLanguage;
+    public Language getLanguage() {
+        return language;
     }
 
     public Teacher getTeacher() {
@@ -27,7 +27,7 @@ public class Student extends Person {
     }
 
     public void setTeacher(Teacher teacher) {
-        if (teacher.getLanguages().contains(learningLanguage)) {
+        if (teacher.getLanguages().contains(language)) {
             this.teacher = teacher;
             teacher.addStudent(this);
         } else {
