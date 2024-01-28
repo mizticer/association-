@@ -1,7 +1,6 @@
 import model.Caretaker;
 import model.Child;
 import model.Group;
-import model.TypeCaretaker;
 
 import javax.swing.*;
 import java.util.Date;
@@ -28,8 +27,9 @@ public class Main {
      */
     public static void main(String[] args) {
         Preschool preschool = new Preschool();
+/*
 
-        Caretaker caretaker = new Caretaker("Agnieszka", "Wójcik", new Date(1999, 2, 24), TypeCaretaker.QUALIFIED);
+        Caretaker caretaker = new Caretaker("Agnieszka", "Wójcik", new Date(1999, 2, 24));
 
         Child childOne = new Child("TestoweDziecko1", "Nazwisko1", new Date(1999, 2, 24), 2);
         Child childTwo = new Child("TestoweDziecko2", "Nazwisko2", new Date(1999, 2, 24), 5);
@@ -54,6 +54,7 @@ public class Main {
         preschool.addGroup(group2);
 
         preschool.saveChildrenToFile(caretaker);
+*/
 
         SwingUtilities.invokeLater(() -> {
             ChildListGUI gui = new ChildListGUI();

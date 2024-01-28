@@ -35,13 +35,13 @@ public class Preschool {
         return qualifiedCaretakers;
     }
 
-//    public Child findChildWithMostOffencesFromSchool() {
+    //    public Child findChildWithMostOffencesFromSchool() {
 //        if (groups.isEmpty()) {
 //            throw new IllegalStateException();
 //        }
 //        Child childWithMostOffences = groups.get(0).getChildWithMostOffences();
 //
-//        // TODO: 20.01.2024 : dokończyć za pomocą pętli
+//
 ////        for (Group group : groups) {
 ////            if (group.getChildWithMostOffences().getOffences() > childWithMostOffences.getOffences()) {
 ////                childWithMostOffences = group.getChildWithMostOffences();
@@ -49,6 +49,33 @@ public class Preschool {
 ////        }
 //        return childWithMostOffences;
 //    }
+// TODO: 20.01.2024 : dokończyć za pomocą pętli
+
+    public RudeChild findChildWithMostOffencesFromSchool2() {
+        List<RudeChild> rudeChildList = new ArrayList<>();
+
+        for (Group group : groups) {
+            for (Child child : group.getChildren()) {
+                if (child instanceof RudeChild) {
+                    rudeChildList.add((RudeChild) child);
+                }
+            }
+        }
+
+        if (rudeChildList.isEmpty()) {
+            throw new RuntimeException("No RudeChild found with offences.");
+        }
+
+        RudeChild maxOffencesChild = rudeChildList.get(0);
+
+        for (RudeChild rudeChild : rudeChildList) {
+            if (rudeChild.getOffences().size() > maxOffencesChild.getOffences().size()) {
+                maxOffencesChild = rudeChild;
+            }
+        }
+
+        return maxOffencesChild;
+    }
 
     public RudeChild findChildWithMostOffencesFromSchool() {
         return groups.stream()
