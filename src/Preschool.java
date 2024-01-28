@@ -1,5 +1,4 @@
 import model.*;
-import model.TypeCaretaker;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
