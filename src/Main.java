@@ -44,14 +44,14 @@ public class Main {
         Result resultPlayer3_2 = new Result(player3, tournament2, 2);
 
         Player bestPlayerInTournament = season.getBestPlayerInTournaments(tournamentNameToTest);
-        System.out.println("Best player " + bestPlayerInTournament.toString() + " in" + tournamentNameToTest + ": " + bestPlayerInTournament.getTotalPoints());
+        System.out.println("Best player " + bestPlayerInTournament.toString() + " in" + tournamentNameToTest + ": " + bestPlayerInTournament.getPoints());
 
         Player mostFirstPlacesPlayer = season.getPlayerWithMostFirstPlaces();
-        System.out.println(mostFirstPlacesPlayer.toString() + " with most first places: " + mostFirstPlacesPlayer.getTotalPoints());
+        System.out.println(mostFirstPlacesPlayer.toString() + " with most first places: " + mostFirstPlacesPlayer.getPoints());
 
         Player mostPointsWithoutWinningPlayer = season.getPlayerWithMostPointsWithoutWinning();
         System.out.println(mostPointsWithoutWinningPlayer + " with most points without winning: " +
-                mostPointsWithoutWinningPlayer.getTotalPoints());
+                mostPointsWithoutWinningPlayer.getPoints());
 
     }
 }

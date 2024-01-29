@@ -1,36 +1,48 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Player {
     private String firstName;
     private String lastName;
-    private List<Result> resultList;
+    private Set<Result> resultList;
 
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.resultList = new ArrayList<>();
+        this.resultList = new HashSet<>();
     }
 
     public void addResult(Result result) {
         resultList.add(result);
     }
 
-    public int getTotalPoints() {
+    public int getPoints() {
         return resultList.stream().mapToInt(Result::getPoints).sum();
     }
 
-    public int getNumberOfWins() {
+    public int getNumberOfPlaces(int placeNr) {
         int count = 0;
         for (Result result : resultList) {
-            if (result.getPosition() == 1) {
+            if (result.getPosition() == placeNr) {
                 count++;
             }
         }
         return count;
+    }
+
+    public int getPoints(String name) {
+        return resultList.stream()
+                .filter(result -> result.getTournament().getName().equalsIgnoreCase(name))
+                .mapToInt(Result::getPoints)
+                .sum();
+    }
+
+    public boolean tookPart(String name) {
+        return resultList.stream()
+                .anyMatch(result -> result.getTournament().getName().equalsIgnoreCase(name));
     }
 
     public int getHighestRankingWithoutWinning() {
@@ -55,5 +67,6 @@ public class Player {
         Player player = (Player) o;
         return Objects.equals(firstName, player.firstName) && Objects.equals(lastName, player.lastName);
     }
+
 
 }

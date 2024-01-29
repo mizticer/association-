@@ -51,4 +51,8 @@ public class Result {
                 Objects.equals(player, otherResult.player) &&
                 Objects.equals(tournament, otherResult.tournament);
     }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
 }

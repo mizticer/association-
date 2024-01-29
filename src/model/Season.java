@@ -23,17 +23,15 @@ public class Season {
     }
 
     public Player getBestPlayerInTournaments(String tournamentName) {
-        return tournaments.stream()
-                .filter(tournament -> tournament.getName().equals(tournamentName))
-                .flatMap(tournament -> tournament.getResultSet().stream())
-                .max(Comparator.comparingInt(Result::getPoints))
-                .map(result -> result.getPlayer())
+        return playerList.stream()
+                .filter(player -> player.tookPart(tournamentName))
+                .max(Comparator.comparingInt(player -> player.getPoints(tournamentName)))
                 .orElseThrow(() -> new NoSuchElementException("No players in the specified tournament"));
     }
 
     public Player getPlayerWithMostFirstPlaces() {
         return playerList.stream()
-                .max(Comparator.comparingInt(Player::getNumberOfWins))
+                .max(Comparator.comparingInt(player -> player.getNumberOfPlaces(1)))
                 .orElseThrow(() -> new NoSuchElementException("No players in the specified tournament"));
     }
 
