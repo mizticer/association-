@@ -1,4 +1,5 @@
 import model.Player;
+import model.Result;
 import model.Season;
 import model.Tournament;
 
@@ -27,20 +28,20 @@ public class Main {
         season.addTournament(tournament1);
         season.addTournament(tournament2);
 
-
         Player player1 = new Player("John", "Doe");
-        player1.addResult(tournament1, 1);
-        player1.addResult(tournament2, 3);
-
         Player player2 = new Player("Jane", "Smith");
-        player2.addResult(tournament1, 2);
-        player2.addResult(tournament2, 1);
-
-
         Player player3 = new Player("Bob", "Johnson");
-        player3.addResult(tournament1, 3);
-        player3.addResult(tournament2, 2);
         String tournamentNameToTest = "Tournament A";
+        season.addPlayer(player1);
+        season.addPlayer(player2);
+        season.addPlayer(player3);
+
+        Result resultPlayer1_1 = new Result(player1, tournament1, 1);
+        Result resultPlayer1_2 = new Result(player1, tournament2, 3);
+        Result resultPlayer2_1 = new Result(player2, tournament1, 2);
+        Result resultPlayer2_2 = new Result(player2, tournament2, 1);
+        Result resultPlayer3_1 = new Result(player3, tournament1, 3);
+        Result resultPlayer3_2 = new Result(player3, tournament2, 2);
 
         Player bestPlayerInTournament = season.getBestPlayerInTournaments(tournamentNameToTest);
         System.out.println("Best player " + bestPlayerInTournament.toString() + " in" + tournamentNameToTest + ": " + bestPlayerInTournament.getTotalPoints());

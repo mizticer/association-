@@ -1,34 +1,54 @@
 package model;
 
+import java.util.Objects;
+
 public class Result {
     private int position;
-    private int points;
-    //TODO: POLE GRACZA I POLE TURNIEJU
+    private Player player;
+    private Tournament tournament;
 
-    public Result(int position) {
+    public Result(Player player, Tournament tournament, int position) {
         if (position < 1) {
             throw new IllegalArgumentException("Position must be a positive integer");
         }
         this.position = position;
-        calculatePoints();
+        this.player = player;
+        this.tournament = tournament;
+        player.addResult(this);
+        tournament.addResult(this);
     }
 
-    private void calculatePoints() {
+    public int getPoints() {
         if (position == 1) {
-            points = 100;
+            return 100;
         } else if (position >= 2 && position <= 5) {
-            points = 100 - (position - 1) * 20;
+            return 100 - (position - 1) * 20;
         } else {
-            points = 0;
+            return 0;
         }
     }
-
 
     public int getPosition() {
         return position;
     }
 
-    public int getPoints() {
-        return points;
+    public Player getPlayer() {
+        return player;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, player, tournament);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Result otherResult = (Result) obj;
+        return position == otherResult.position &&
+                Objects.equals(player, otherResult.player) &&
+                Objects.equals(tournament, otherResult.tournament);
     }
 }

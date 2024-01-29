@@ -1,51 +1,43 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Player {
     private String firstName;
     private String lastName;
-    private Map<Tournament, Result> results;
-    //TODO: DODAJ LISTE REZULTATÓW
+    private List<Result> resultList;
 
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.results = new HashMap<>();
+        this.resultList = new ArrayList<>();
     }
 
-    public Map<Tournament, Result> getResults() {
-        return results;
-    }
-
-    public void addResult(Tournament tournament, int position) {
-        if (position < 1) {
-            throw new IllegalArgumentException("Position must be a positive integer");
-        }
-        if (results.values().stream().anyMatch(result -> result.getPosition() == position)) {
-            throw new IllegalArgumentException("Player cannot have the same position in the tournament");
-        }
-        Result result = new Result(position);
-        results.put(tournament, result);
-        tournament.addPlayer(this);
+    public void addResult(Result result) {
+        resultList.add(result);
     }
 
     public int getTotalPoints() {
-        return results.values().stream().mapToInt(Result::getPoints).sum();
+        return resultList.stream().mapToInt(Result::getPoints).sum();
     }
 
-
-    public boolean hasWonAnyTournament() {
-        return results.values().stream().anyMatch(result -> result.getPosition() == 1);
+    public int getNumberOfWins() {
+        int count = 0;
+        for (Result result : resultList) {
+            if (result.getPosition() == 1) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public int getHighestRankingWithoutWinning() {
-        return results.values().stream()
+        return resultList.stream()
                 .filter(result -> result.getPosition() != 1)
                 .mapToInt(Result::getPoints)
-                .max()
-                .orElse(0);
+                .sum();
     }
 
     @Override
@@ -55,4 +47,13 @@ public class Player {
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(firstName, player.firstName) && Objects.equals(lastName, player.lastName);
+    }
+
 }
