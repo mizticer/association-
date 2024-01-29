@@ -31,7 +31,7 @@ public class Zoo {
     //-znajdz trenera ktory trenował najwiecej zwierzat
     public Trainer findTrainerWithMostAnimals() {
         return trainerList.stream()
-                .max(Comparator.comparingInt(Trainer::numberOfAnimalsTrained))
+                .max(Comparator.comparingInt(trainer -> trainer.getTrainedAnimals().size()))
                 .orElse(null);
     }
 

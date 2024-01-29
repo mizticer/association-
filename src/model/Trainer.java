@@ -7,20 +7,27 @@ public class Trainer {
     private String firstName;
     private String lastName;
     private String address;
-    private List<Animal> trainedAnimalList;
+    private List<Animal> trainedAnimals;
     private List<EquipmentUsage> equipmentUsages;
 
     public Trainer(String firstName, String lastName, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        trainedAnimalList = new ArrayList<>();
+        trainedAnimals = new ArrayList<>();
         equipmentUsages = new ArrayList<>();
     }
 
     public void addAnimal(Animal animal) {
-        trainedAnimalList.add(animal);
+        if (trainedAnimals.contains(animal)) {
+            throw new IllegalStateException("Trainer contain this animal");
+        }
+        trainedAnimals.add(animal);
         animal.setTrainer(this);
+    }
+
+    public List<Animal> getTrainedAnimals() {
+        return trainedAnimals;
     }
 
     public void addEquipmentUsages(EquipmentUsage usage) {
@@ -31,13 +38,10 @@ public class Trainer {
         return equipmentUsages;
     }
 
-    public int numberOfAnimalsTrained() {
-        return trainedAnimalList.size();
-    }
 
     public boolean trainedSpaniel() {
-        return trainedAnimalList.stream()
-                .anyMatch(animal -> animal.getSpecies().equals("Spaniel"));
+        return trainedAnimals.stream()
+                .anyMatch(animal -> animal instanceof Dog && animal.getSpecies().equals("Spaniel"));
     }
 
     public String getFirstName() {
