@@ -24,22 +24,23 @@ public class School {
         teacherList.add(teacher);
     }
 
-    public void addLesson(Lesson lesson, Student student) {
+    public void addLesson(Lesson lesson, Student student, Teacher teacher) {
         if (lesson.getDate().before(new Date())) {
             throw new IllegalArgumentException("Cannot create lesson in the past.");
         }
         lesson.setStudent(student);
+        lesson.setTeacher(teacher);
     }
 
     public Student studentWithTheMostLessons() {
         return studentList.stream()
                 .max(Comparator.comparingInt(o -> o.getLessonList().size()))
-                .orElse(null);
+                .orElseThrow();
     }
 
     public Teacher teacherWithTheMostStudents() {
         return teacherList.stream()
                 .max(Comparator.comparingInt(o -> o.getStudents().size()))
-                .orElse(null);
+                .orElseThrow();
     }
 }

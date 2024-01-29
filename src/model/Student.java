@@ -28,11 +28,10 @@ public class Student extends Person {
 
     public void setTeacher(Teacher teacher) {
         if (teacher.getLanguages().contains(language)) {
-            this.teacher = teacher;
-            teacher.addStudent(this);
-        } else {
             throw new IllegalStateException("Teacher does not teach the language of the student.");
         }
+        this.teacher = teacher;
+        teacher.addStudent(this);
     }
 
     public void addLesson(Lesson lesson) {

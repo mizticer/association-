@@ -20,7 +20,6 @@ zbuduj program tak by dało się dodawać lekcje (termin)
 -lekcja nie może być dodawana w przeszłości.
 -znajdz kursanta, który ma najwięcej lekcji
 -znajdz nauczyciela, który ma najwięcej kursantów
-
 */
     public static void main(String[] args) {
             Language english = new Language("English");

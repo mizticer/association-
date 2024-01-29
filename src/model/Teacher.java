@@ -8,6 +8,7 @@ public class Teacher extends Person {
     private Date hireDate;
     private List<Language> languages;
     private List<Student> students;
+    private List<Lesson> lessons;
 
     public Teacher(String firstName, String lastName, Date hireDate, List<Language> languages) {
         super(firstName, lastName);
@@ -15,9 +16,15 @@ public class Teacher extends Person {
         this.languages = languages;
         this.students = new ArrayList<>();
     }
+
     public void addStudent(Student student) {
         students.add(student);
     }
+
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
+    }
+
     public List<Language> getLanguages() {
         return languages;
     }
