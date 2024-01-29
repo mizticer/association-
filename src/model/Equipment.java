@@ -13,7 +13,7 @@ public class Equipment {
 
     public void repair() {
         if (condition == Condition.TRAGIC) {
-            condition = Condition.NEW;
+            condition = Condition.USED;
             repairCount++;
         }
     }
