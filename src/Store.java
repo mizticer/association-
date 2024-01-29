@@ -1,7 +1,4 @@
-import model.Basket;
-import model.Client;
-import model.Employee;
-import model.OrderHistory;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +13,16 @@ public class Store {
         employeeList = new ArrayList<>();
         registeredClients = new ArrayList<>();
         orderHistories = new ArrayList<>();
+    }
+
+    public void promoteToManager(Employee employee) {
+        if (!employeeList.contains(employee)) {
+            throw new IllegalStateException();
+        }
+        if (employee.getEmployeeType().equals(EmployeeType.MANAGER)) {
+            throw new IllegalStateException();
+        }
+        employee.promoteToManager();
     }
 
     public void hireEmployee(Employee employee) {

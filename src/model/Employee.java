@@ -20,6 +20,10 @@ public class Employee extends Person {
         }
     }
 
+    public EmployeeType getEmployeeType() {
+        return employeeType;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

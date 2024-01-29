@@ -7,6 +7,7 @@ import java.util.List;
 public class Client extends Person {
     private Date registrationDate;
     private List<Basket> basketList;
+    private List<OrderHistory> orderHistories;
 
     public Client(String firstName, String lastName, String address) {
         super(firstName, lastName, address);
@@ -22,8 +23,18 @@ public class Client extends Person {
     }
 
     public void addBasket(Basket basket) {
+        if (basketList.contains(basket)) {
+            throw new IllegalStateException();
+        }
         basketList.add(basket);
         basket.setClient(this);
+    }
+
+    public void addOrder(OrderHistory orderHistory) {
+        if (orderHistories.contains(orderHistory)) {
+            throw new IllegalStateException();
+        }
+        orderHistories.add(orderHistory);
     }
 
     public List<Basket> getBasketList() {
